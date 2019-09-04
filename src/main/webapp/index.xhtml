@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+   <h:head>
+    <title>Inscription</title>
+   </h:head>
+    
+    <h:body>
+        
+        
+        
+        
+        <p:ajaxStatus style="display:block;margin-bottom:2em;height:24px;">
+           
+        </p:ajaxStatus>
+
+        <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+
+        <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+            <p:graphicImage name="/original/waiting2.gif" style="height: 100px; width: 120px" />
+        </p:dialog>
+        
+        
+        
+        <h:form style="width:100%;height:100%; ">
+            <p:growl id="message" />
+            <h:panelGrid columns="3" style="width: 100%; text-align: right; font-size:2vw;">
+                
+                <p:outputLabel for="entreprise" value="Entreprise:" />
+                    
+                <p:inputText id="entreprise" value="#{usersController.entreprise}" required="true"  style="width: 100%">
+                         <f:validateLength minimum="2" />
+                         <f:ajax event="blur" render="msgNom" />
+                    </p:inputText>
+                <p:message for="entreprise" id="msgNom" display="icon" />
+                    
+               
+                <p:outputLabel for="mail" value="Adresse mail:" />
+                    <p:inputText id="mail" value="#{usersController.mail}" label="mail" required="true" style="width: 100%">
+                        <f:ajax event="blur" render="msgMail" />
+                        <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                        <f:validateLength minimum="6" />
+                    </p:inputText>
+                    
+              <p:message for="mail" id="msgMail" display="icon" />
+
+              <p:outputLabel for="tel" value="Tel:" />
+              <p:inputMask id="tel" value="#{usersController.phone}" mask="(9999) 99-99-99" required="false" style="width: 100%"/>
+              <p:message for="tel" id="msgTel" display="icon" />
+            
+           
+           </h:panelGrid>
+            
+            <p:commandButton value="S'inscrir" action="#{usersController.insertUser()}" update="message" class="btn btn-success" style="width: 100%; font-size:2vw;"/>
+            
+        </h:form>
+    </h:body>
+     
+</html>

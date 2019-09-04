@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+            <title>Contact finder</title>
+            <f:metadata>
+                <f:viewAction action="#{sessionInfo.returnToCon()}" />
+            </f:metadata>
+    </h:head>
+    <h:body>
+        
+       Test ok ok 
+       <br/>
+       <h:form>
+           <p:commandButton value="Ce Deconnecter" action="#{connexionController.doLogout()}"  class="btn btn-success" style="width: 100%; font-size:2vw;"/>
+       </h:form>
+
+       
+    </h:body>
+</html>
